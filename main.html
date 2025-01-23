@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        nav button {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+        section {
+            padding: 2rem;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        const translations = {
+            es: {
+                webDev: "Desarrollo Web",
+                webDevContent: "He trabajado con tecnologías como HTML, CSS y JavaScript. He realizado proyectos privados con Flask, React, Node y Angular.",
+                softwareDev: "Desarrollo de Software",
+                softwareDevContent: "He creado bases de datos utilizando bases de datos no relacionales como Mongo y bases de datos relacionales como SQL Server y Postgres.",
+                machineLearning: "Aprendizaje Automático",
+                machineLearningContent: "He realizado muchas certificaciones en Kaggle y Hugging Face, llevando a cabo proyectos como predicción de ventas de viviendas con entrenamiento supervisado y proyectos de entrenamiento no supervisado como agentes en videojuegos 2D, usando PyTorch para ambos tipos de proyectos."
+            },
+            en: {
+                webDev: "Web Development",
+                webDevContent: "I have worked with technologies like HTML, CSS, and JavaScript. I have done private projects with Flask, React, Node, and Angular.",
+                softwareDev: "Software Development",
+                softwareDevContent: "I have created databases using non-relational databases like Mongo and relational databases like SQL Server and Postgres.",
+                machineLearning: "Machine Learning",
+                machineLearningContent: "I have done many certifications from Kaggle and Hugging Face, realizing projects like housing sales prediction with supervised training and unsupervised training projects like agents in 2D video games, using PyTorch for both types of projects."
+            },
+            fr: {
+                webDev: "Développement Web",
+                webDevContent: "J'ai travaillé avec des technologies comme HTML, CSS et JavaScript. J'ai réalisé des projets privés avec Flask, React, Node et Angular.",
+                softwareDev: "Développement Logiciel",
+                softwareDevContent: "J'ai créé des bases de données en utilisant des bases de données non relationnelles comme Mongo et des bases de données relationnelles comme SQL Server et Postgres.",
+                machineLearning: "Apprentissage Automatique",
+                machineLearningContent: "J'ai suivi de nombreuses certifications sur Kaggle et Hugging Face, réalisant des projets comme la prédiction des ventes de logements avec un apprentissage supervisé et des projets d'apprentissage non supervisé comme des agents dans des jeux vidéo 2D, en utilisant PyTorch pour les deux types de projets."
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.getElementById('webDevTitle').textContent = translations[lang].webDev;
+            document.getElementById('webDevContent').textContent = translations[lang].webDevContent;
+            document.getElementById('softwareDevTitle').textContent = translations[lang].softwareDev;
+            document.getElementById('softwareDevContent').textContent = translations[lang].softwareDevContent;
+            document.getElementById('machineLearningTitle').textContent = translations[lang].machineLearning;
+            document.getElementById('machineLearningContent').textContent = translations[lang].machineLearningContent;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            changeLanguage('es'); // Default language
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Portfolio</h1>
+        <nav>
+            <button onclick="changeLanguage('es')">Español</button>
+            <button onclick="changeLanguage('en')">English</button>
+            <button onclick="changeLanguage('fr')">Français</button>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2 id="webDevTitle"></h2>
+            <p id="webDevContent"></p>
+        </section>
+        <section>
+            <h2 id="softwareDevTitle"></h2>
+            <p id="softwareDevContent"></p>
+        </section>
+        <section>
+            <h2 id="machineLearningTitle"></h2>
+            <p id="machineLearningContent"></p>
+        </section>
+    </main>
+</body>
+</html>
