@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+        <title>Document</title>
+        <main>Pagina practicando los iconos</main>
+            <h2>Cafe  from feathericons<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-coffee"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg></h2>
+            <h2>Download from fonts google icons <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M280-280h400v-80H280v80Zm200-120 160-160-56-56-64 62v-166h-80v166l-64-62-56 56 160 160Zm0 320q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg></h2>    
+        </s>
+    <p class="text"></p>
+    <div>
+        <p></p>
+    </div>
+
+    <div>
+        <p class="name"></p>
+        <p class="name"></p>
+        <p class="name"></p>
+    </div>
+
+    <table>
+        <tr>    <th>Animals</th>
+        </tr>
+        <tr> <th>Hippopotamus</th></tr>
+        <tr><th>Horse</th>
+            <td>Mare</td></tr>
+        <tr><td>Stallion</td></tr>
+        <tr> <th>Crocodile</th></tr>
+        <tr> <th>Chicken</th>
+            <td>Hen</td></tr>
+        <tr><td>Rooster</td></tr>
+    </table>
+
+<style>
+
+table {
+  border-spacing: 0.5rem;
+}
+td {
+  padding: 0.5rem;
+}
+
+td:nth-child(1) { background: hsl(150, 50%, 50%); }
+td:nth-child(2) { background: hsl(160, 60%, 50%); }
+td:nth-child(3) { background: hsl(170, 70%, 50%); }
+td:nth-child(4) { background: hsl(180, 80%, 50%); }
+td:nth-child(5) { background: hsl(190, 90%, 50%); }
+td:nth-child(6) { background: hsl(200, 99%, 50%); }
+
+</style>
+
+    <table>
+        <caption>
+          Dinosaurs in the Jurassic period
+        </caption>
+      
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th>ID</th>
+                <th>Favorite Color</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Jim</td>
+                <td>00001</td>
+                <td>Blue</td>
+              </tr>
+              <tr>
+                <td>Sue</td>
+                <td>00002</td>
+                <td>Red</td>
+              </tr>
+              <tr>
+                <td>Barb</td>
+                <td>00003</td>
+                <td>Green</td>
+              </tr>
+        </tbody>
+        <tfoot>
+            
+        </tfoot>
+    </table>
+        <h2>Segunda tabla / Second Table / Deuxieme table</h2>
+
+        <input type="text" name="" id="input" onkeyup="llenartabla()">
+        <table id="ultimaTabla">
+            <tr>
+              <td>This</td>
+              <td>Little</td>
+              <td>Piggy</td>
+              <td>Went</td>
+              <td>To</td>
+              <td>Market</td>
+            </tr>
+            <tr>
+              <td colspan="2">This</td>
+              <td>Little</td>
+              <td>Piggy</td>
+              <td>Went</td>
+              <td>To</td>
+            </tr>
+              <tr>
+              <td colspan="4">This</td>
+              <td rowspan="6">Little</td>
+              <td>Piggy</td>
+            </tr>
+            <tr>
+              <td rowspan="2">This</td>
+              <td>Little</td>
+              <td>Piggy</td>
+              <td>Went</td>
+              <td>To</td>
+            </tr>
+            <tr>
+              <td>This</td>
+              <td>Little</td>
+              <td>Piggy</td>
+              <td>Went</td>
+              <td>To</td>
+              <td>To</td>
+              <td>To</td>
+            </tr>
+            <tr>
+                <td>This</td>
+                <td>Little</td>
+                <td>Piggy</td>
+                <td>Went</td>
+                <td>To</td>
+              </tr>
+              <tr>
+                <td>This</td>
+                <td>Little</td>
+                <td>Piggy</td>
+                <td>Went</td>
+                <td>To</td>
+              </tr>
+          </table>
+    <script>
+        function llenartabla(tabla){
+            tabla = document.getElementById("ultimaTabla").lastElementChild;
+            ultimaFila = tabla.lastElementChild; 
+
+            
+ 
+           text=  document.getElementById("input").value;
+           var row = document.createElement("tr");
+           var cell = document.createElement("td")
+           cellText = document.createTextNode(text)
+           if (ultimaFila.lastElementChild.textContent != text.substring(0, text.length -1)){
+                cell.appendChild(cellText);
+                row.appendChild(cell);
+                tabla.appendChild(row)
+           }else{
+                cell.appendChild(cellText);
+                ultimaFila.appendChild(cell);
+           }
+
+        }
+
+
+    </script>
+</body>
+</html>
