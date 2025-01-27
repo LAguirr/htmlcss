@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +9,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
         }
         header {
             background-color: #333;
@@ -27,23 +28,127 @@
             cursor: pointer;
         }
 
-         main{
-            display: table;
-            width: 100%; 
-            table-layout: fixed;
-            border-spacing: 10px;
-
-         }
-
-         section {
-            padding: 2rem;
-            height: 50%;
-            width: 30%;
-            display: table-cell;
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 150px);
+            padding: 20px;
         }
-        
-        .hidden {
-            display: none;
+
+        .carousel-container {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+            width: 1200px; /* 3 times the container width */
+        }
+
+        section {
+            width: 800px;
+            height: 400px;
+            padding: 2rem;
+            box-sizing: border-box;
+            background-color: #f5f5f5;
+            border: 2px solid #333;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        section h2 {
+            margin: 0 0 1rem 0;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        section p {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.5;
+            overflow-y: auto;
+            max-height: 250px;
+            padding: 10px;
+        }
+
+        .carousel-buttons {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            z-index: 2;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ccc;
+            cursor: pointer;
+            border: none;
+        }
+
+        .carousel-dot.active {
+            background-color: #333;
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 1rem;
+            cursor: pointer;
+            z-index: 2;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-prev {
+            left: -50px;
+        }
+
+        .carousel-next {
+            right: -50px;
+        }
+
+        @media (max-width: 600px) {
+            .carousel-container {
+                width: 600px;
+                height: 300px;
+            }
+            
+            .carousel {
+                width: 900px; /* 3 times the container width */
+            }
+            
+            section {
+                width: 600px;
+                height: 300px;
+            }
+
+            section p {
+                max-height: 180px;
+                font-size: 0.9rem;
+            }
         }
     </style>
     <script>
@@ -85,6 +190,39 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             changeLanguage('es'); // Default language
+            
+            const carousel = document.querySelector('.carousel');
+            const dots = document.querySelectorAll('.carousel-dot');
+            let currentSlide = 0;
+
+            function updateCarousel() {
+                carousel.style.transform = `translateX(-${currentSlide * 400}px)`;
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % 3;
+                updateCarousel();
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + 3) % 3;
+                updateCarousel();
+            }
+
+            function goToSlide(index) {
+                currentSlide = index;
+                updateCarousel();
+            }
+
+            document.querySelector('.carousel-next').addEventListener('click', nextSlide);
+            document.querySelector('.carousel-prev').addEventListener('click', prevSlide);
+            
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => goToSlide(index));
+            });
         });
     </script>
 </head>
@@ -98,19 +236,29 @@
         </nav>
     </header>
     <main>
-        <section>
-            <h2 id="webDevTitle"></h2>
-            <p id="webDevContent"></p>
-        </section>
-        <section>
-            <h2 id="softwareDevTitle"></h2>
-            <p id="softwareDevContent"></p>
-        </section>
-        <section>
-            <h2 id="machineLearningTitle"></h2>
-            <p id="machineLearningContent"></p>
-        </section>
+        <div class="carousel-container">
+            <button class="carousel-arrow carousel-prev">←</button>
+            <button class="carousel-arrow carousel-next">→</button>
+            <div class="carousel">
+                <section>
+                    <h2 id="webDevTitle"></h2>
+                    <p id="webDevContent"></p>
+                </section>
+                <section>
+                    <h2 id="softwareDevTitle"></h2>
+                    <p id="softwareDevContent"></p>
+                </section>
+                <section>
+                    <h2 id="machineLearningTitle"></h2>
+                    <p id="machineLearningContent"></p>
+                </section>
+            </div>
+            <div class="carousel-buttons">
+                <button class="carousel-dot active"></button>
+                <button class="carousel-dot"></button>
+                <button class="carousel-dot"></button>
+            </div>
+        </div>
     </main>
-    
 </body>
 </html>
