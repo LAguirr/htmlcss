@@ -10,6 +10,7 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
+            background-color: #f5f5f5;
         }
         header {
             background-color: #333;
@@ -34,36 +35,36 @@
 
         main {
             height: 100vh;
-            overflow: hidden;
-        }
-
-        .carousel-container {
-            width: 100vw;
-            height: 100vh;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .carousel {
             display: flex;
-            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-            height: 100%;
-            width: 300vw; /* 3 times the viewport width */
+            justify-content: center;
+            align-items: center;
+            padding-top: 100px;
         }
 
         section {
-            width: 100vw;
-            height: 100vh;
-            padding: 2rem;
-            box-sizing: border-box;
-            background-color: #f5f5f5;
+            position: absolute;
+            width: 80vw;
+            height: 70vh;
+            background-color: white;
             border: 2px solid #333;
+            border-radius: 10px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding-top: 150px; /* Space for fixed header */
+            padding: 2rem;
+            box-sizing: border-box;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease;
+            transform: scale(0.9);
+        }
+
+        section.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
         }
 
         section h2 {
@@ -79,34 +80,29 @@
             max-width: 80%;
         }
 
-        .carousel-buttons {
+        .indicator {
             position: fixed;
-            bottom: 40px;
-            left: 0;
-            right: 0;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
             display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            z-index: 2;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1000;
         }
 
-        .carousel-dot {
-            width: 20px;
-            height: 20px;
+        .indicator-dot {
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             background-color: #ccc;
             cursor: pointer;
-            border: none;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
-        .carousel-dot:hover {
-            transform: scale(1.2);
-        }
-
-        .carousel-dot.active {
+        .indicator-dot.active {
             background-color: #333;
-            transform: scale(1.2);
+            transform: scale(1.5);
         }
 
         @media (max-width: 768px) {
@@ -159,69 +155,62 @@
         document.addEventListener('DOMContentLoaded', () => {
             changeLanguage('es'); // Default language
             
-            const carousel = document.querySelector('.carousel');
-            const dots = document.querySelectorAll('.carousel-dot');
-            let currentSlide = 0;
+            const sections = document.querySelectorAll('section');
+            const dots = document.querySelectorAll('.indicator-dot');
+            let currentSection = 0;
             let isScrolling = false;
             let scrollTimeout;
 
-            function updateCarousel() {
-                carousel.style.transform = `translateX(-${currentSlide * 100}vw)`;
-                dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentSlide);
+            function showSection(index) {
+                sections.forEach((section, i) => {
+                    section.classList.toggle('active', i === index);
+                });
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
                 });
             }
 
-            function nextSlide() {
-                if (currentSlide < 2) {
-                    currentSlide++;
-                    updateCarousel();
-                }
-            }
-
-            function prevSlide() {
-                if (currentSlide > 0) {
-                    currentSlide--;
-                    updateCarousel();
-                }
-            }
-
-            function goToSlide(index) {
-                currentSlide = index;
-                updateCarousel();
-            }
-
-            // Mouse wheel navigation
             function handleScroll(event) {
                 if (isScrolling) return;
                 
                 isScrolling = true;
                 clearTimeout(scrollTimeout);
                 
-                if (event.deltaY > 0) {
-                    nextSlide();
-                } else {
-                    prevSlide();
+                if (event.deltaY > 0 && currentSection < sections.length - 1) {
+                    currentSection++;
+                } else if (event.deltaY < 0 && currentSection > 0) {
+                    currentSection--;
                 }
+                
+                showSection(currentSection);
                 
                 scrollTimeout = setTimeout(() => {
                     isScrolling = false;
-                }, 1000); // Debounce scroll events
+                }, 800); // Debounce scroll events
             }
+
+            // Initialize first section
+            showSection(0);
 
             // Add wheel event listener
             window.addEventListener('wheel', handleScroll, { passive: true });
             
+            // Add click events to indicator dots
             dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => goToSlide(index));
+                dot.addEventListener('click', () => {
+                    currentSection = index;
+                    showSection(currentSection);
+                });
             });
 
-            // Optional: Add keyboard navigation
+            // Add keyboard navigation
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                    nextSlide();
-                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                    prevSlide();
+                if ((e.key === 'ArrowDown' || e.key === 'ArrowRight') && currentSection < sections.length - 1) {
+                    currentSection++;
+                    showSection(currentSection);
+                } else if ((e.key === 'ArrowUp' || e.key === 'ArrowLeft') && currentSection > 0) {
+                    currentSection--;
+                    showSection(currentSection);
                 }
             });
         });
@@ -237,27 +226,24 @@
         </nav>
     </header>
     <main>
-        <div class="carousel-container">
-            <div class="carousel">
-                <section>
-                    <h2 id="webDevTitle"></h2>
-                    <p id="webDevContent"></p>
-                </section>
-                <section>
-                    <h2 id="softwareDevTitle"></h2>
-                    <p id="softwareDevContent"></p>
-                </section>
-                <section>
-                    <h2 id="machineLearningTitle"></h2>
-                    <p id="machineLearningContent"></p>
-                </section>
-            </div>
-            <div class="carousel-buttons">
-                <button class="carousel-dot active"></button>
-                <button class="carousel-dot"></button>
-                <button class="carousel-dot"></button>
-            </div>
+        <section>
+            <h2 id="webDevTitle"></h2>
+            <p id="webDevContent"></p>
+        </section>
+        <section>
+            <h2 id="softwareDevTitle"></h2>
+            <p id="softwareDevContent"></p>
+        </section>
+        <section>
+            <h2 id="machineLearningTitle"></h2>
+            <p id="machineLearningContent"></p>
+        </section>
+        <div class="indicator">
+            <div class="indicator-dot active"></div>
+            <div class="indicator-dot"></div>
+            <div class="indicator-dot"></div>
         </div>
     </main>
 </body>
 </html>
+
