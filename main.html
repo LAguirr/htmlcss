@@ -119,9 +119,21 @@
                 font-size: 1.5rem;
             }
         }
-        footer{
-            background-color:#333;
-            display: block;
+        footer {
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: center;
+            padding: 1rem;
+            position: relative;
+        }
+        .footer-icons {
+            display: flex;
+            gap: 1rem;
+        }
+        .footer-icons img {
+            width: 40px;
+            height: 40px;
         }
     </style>
     <script>
@@ -255,13 +267,12 @@
         </div>
     </main>
     <footer>
-        Github
-        Linkedin
-        Hacker Rank
-        Freecodecamp
-        Kaggle
-        Hugging Face
-
+        <div class="footer-icons">
+            <a href="#"><img src="" alt="LinkedIn Icon"></a>
+            <a href="#"><img src="" alt="GitHub Icon"></a>
+            <a href="#"><img src="" alt="HackerRank Icon"></a>
+            <a href="#"><img src="" alt="Kaggle Icon"></a>
+        </div>
     </footer>
 </body>
 </html>
