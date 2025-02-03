@@ -43,13 +43,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding-top: 100px;
+            padding-top: 50px;
         }
 
         section {
             position: absolute;
-            width: 85vw;
-            height: 60vh;
+            width: 60vw;
+            height: 55vh;
             background-color: white;
             border: 2px solid #333;
             border-radius: 10px;
@@ -58,7 +58,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 2rem;
+            padding: 1rem;
             box-sizing: border-box;
             opacity: 0;
             visibility: hidden;
@@ -74,13 +74,13 @@
 
         section h2 {
             margin: 0 0 2rem 0;
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: #333;
         }
 
         section p {
             margin: 0;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             line-height: 1.6;
             max-width: 80%;
         }
@@ -119,21 +119,61 @@
                 font-size: 1.5rem;
             }
         }
+
         footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
             background-color: #333;
-            color: white;
+            padding: 0.5rem;
             display: flex;
             justify-content: center;
-            padding: 1rem;
-            position: relative;
+            gap: 2rem;
+            z-index: 1000;
         }
-        .footer-icons {
-            display: flex;
-            gap: 1rem;
+
+        .social-icon {
+            color: white;
+            font-size: 0.5rem;
+            transition: transform 0.3s ease, color 0.3s ease;
         }
-        .footer-icons img {
-            width: 40px;
-            height: 40px;
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+        }
+
+        .github:hover {
+            color: #6e5494;
+        }
+
+        .kaggle:hover {
+            color: #20beff;
+        }
+
+        .huggingface:hover {
+            color: #ffac2f;
+        }
+
+        .hackerrank:hover {
+            color: #2ec866;
+        }
+
+        .linkedin:hover {
+            color: #20beff;
+        }
+
+        main {
+            padding-bottom: 80px;
+        }
+
+        section {
+            margin-bottom: 60px;
+            
+        }
+
+        .fa-hugging-face::before {
+            content: "🤗";
+            font-size: 1.8rem;
         }
     </style>
     <script>
@@ -267,12 +307,30 @@
         </div>
     </main>
     <footer>
-        <div class="footer-icons">
-            <a href="#"><img src="" alt="LinkedIn Icon"></a>
-            <a href="#"><img src="" alt="GitHub Icon"></a>
-            <a href="#"><img src="" alt="HackerRank Icon"></a>
-            <a href="#"><img src="" alt="Kaggle Icon"></a>
-        </div>
+        <!--<div class="footer-icons">
+            <a href="#"><img src="https://img.icons8.com/?size=100&id=13930&format=png&color=000000" alt="LinkedIn Icon"></a>
+            <a href="#"><img src="https://img.icons8.com/?size=100&id=62856&format=png&color=000000" alt="GitHub Icon"></a>
+            <a href="#"><img src="https://img.icons8.com/?size=100&id=HSqTN92Y0X51&format=png&color=000000" alt="HackerRank Icon"></a>
+            <a href="#"><img src="https://img.icons8.com/?size=100&id=s1rM4KTx2Huf&format=png&color=000000" alt="Kaggle Icon"></a>
+            <a href="#"><img src="https://img.icons8.com/?size=100&id=sop9ROXku5bb&format=png&color=000000" alt="Hugging Face"></a>
+
+        
+        </div> lin-->
+        <a href="#" class="social-icon linkedin" target="_blank">
+            <img src="https://img.icons8.com/?size=60&id=13930&format=png&color=000000" alt="LinkedIn Icon">
+        </a>
+        <a href="#" class="social-icon github" target="_blank">
+            <img src="https://img.icons8.com/?size=60&id=62856&format=png&color=000000" alt="GitHub Icon">
+        </a>
+        <a href="#" class="social-icon kaggle" target="_blank">
+            <img src="https://img.icons8.com/?size=60&id=s1rM4KTx2Huf&format=png&color=000000" alt="Kaggle Icon">
+        </a>
+        <a href="#" class="social-icon huggingface" target="_blank">
+            <img src="https://img.icons8.com/?size=60&id=sop9ROXku5bb&format=png&color=000000" alt="Hugging Face">
+        </a>
+        <a href="#" class="social-icon hackerrank" target="_blank">
+            <img src="https://img.icons8.com/?size=60&id=HSqTN92Y0X51&format=png&color=000000" alt="HackerRank Icon">
+        </a>
     </footer>
 </body>
 </html>
