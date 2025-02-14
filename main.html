@@ -184,28 +184,40 @@
         const translations = {
             es: {
                 webDev: "Desarrollo Web",
-                webDevContent: "He trabajado con tecnologías como HTML, CSS y JavaScript. He realizado proyectos privados con Flask, React, Node y Angular.",
+                webDevContent: "He trabajado con tecnologías como HTML, CSS y JavaScript. He realizado proyectos privados con Flask, React, Node ",
                 softwareDev: "Desarrollo de Software",
-                softwareDevContent: "He creado bases de datos utilizando bases de datos no relacionales como Mongo y bases de datos relacionales como SQL Server y Postgres.",
+                softwareDevContent: "He creado bases de datos utilizando bases de datos no relacionales como Mongodb y bases de datos relacionales como SQL Server y Postgres.",
                 machineLearning: "Aprendizaje Automático",
-                machineLearningContent: "He realizado muchas certificaciones en Kaggle y Hugging Face, llevando a cabo proyectos como predicción de ventas de viviendas con entrenamiento supervisado y proyectos de entrenamiento no supervisado como agentes en videojuegos 2D, usando PyTorch para ambos tipos de proyectos."
+                machineLearningContent: "Tengo mas de 6 años interesado en la IA, y 4 años estudiandolo de forma seria,realizando certificaciones en Kaggle y Hugging Face con proyectos como predicción de ventas de viviendas con entrenamiento supervisado y proyectos de entrenamiento no supervisado.",
+                lenguages: "Lenguajes de programacion",
+                lenguagesContent: "Tengo mas de 4 años de experiencia en Python, al menos 8 años en practicando Javascript puro y 1 año en Java." ,
+                misPasiones: "Actualidad",
+                misPasionesContent: "Actualmente lo que mas me gusta es la inteligencia artificial, con el entrenamiento no supervisado y la creacion de agentes. me gusta el desarrollo y la IA, y si en mi experiencia profesional no observan puestos de desarrollo, es porque nadie me ha dado la oportunidad."
             },
             en: {
                 webDev: "Web Development",
-                webDevContent: "I have worked with technologies like HTML, CSS, and JavaScript. I have done private projects with Flask, React, Node, and Angular.",
+                webDevContent: "I have worked with technologies like HTML, CSS, and JavaScript. I have done private projects with Flask, React, Node.",
                 softwareDev: "Software Development",
                 softwareDevContent: "I have created databases using non-relational databases like Mongo and relational databases like SQL Server and Postgres.",
                 machineLearning: "Machine Learning",
-                machineLearningContent: "I have done many certifications from Kaggle and Hugging Face, realizing projects like housing sales prediction with supervised training and unsupervised training projects like agents in 2D video games, using PyTorch for both types of projects."
-            },
+                machineLearningContent: "I have done many certifications from Kaggle and Hugging Face, realizing projects like housing sales prediction with supervised training and unsupervised training projects like agents in 2D video games, using PyTorch for both types of projects.",
+                lenguages: "Programming languages",
+                lenguagesContent: "I have more than 4 years of experience in Python, at least 8 years in pure Javascript practice and 1 year in Java." ,
+                misPasiones: "Current affairs",
+                misPasionesContent: "Currently, what I like the most is artificial intelligence, with unsupervised training and agent creation. I like development and AI, and if you don't see any development positions in my professional experience, it's because no one has given me the opportunity."
+           },
             fr: {
                 webDev: "Développement Web",
-                webDevContent: "J'ai travaillé avec des technologies comme HTML, CSS et JavaScript. J'ai réalisé des projets privés avec Flask, React, Node et Angular.",
+                webDevContent: "J'ai travaillé avec des technologies comme HTML, CSS et JavaScript. J'ai réalisé des projets privés avec Flask, React, Node.",
                 softwareDev: "Développement Logiciel",
                 softwareDevContent: "J'ai créé des bases de données en utilisant des bases de données non relationnelles comme Mongo et des bases de données relationnelles comme SQL Server et Postgres.",
                 machineLearning: "Apprentissage Automatique",
-                machineLearningContent: "J'ai suivi de nombreuses certifications sur Kaggle et Hugging Face, réalisant des projets comme la prédiction des ventes de logements avec un apprentissage supervisé et des projets d'apprentissage non supervisé comme des agents dans des jeux vidéo 2D, en utilisant PyTorch pour les deux types de projets."
-            }
+                machineLearningContent: "J'ai suivi de nombreuses certifications sur Kaggle et Hugging Face, réalisant des projets comme la prédiction des ventes de logements avec un apprentissage supervisé et des projets d'apprentissage non supervisé comme des agents dans des jeux vidéo 2D, en utilisant PyTorch pour les deux types de projets.",
+                lenguages: "Langages de programmation",
+                lenguagesContent: "J'ai plus de 4 ans d'expérience en Python, au moins 8 ans en Javascript pur et 1 an en Java." ,
+                misPasiones: "Actualités",
+                misPasionesContent: "Actuellement, ce que j'aime le plus, c'est l'intelligence artificielle, avec l'entraînement non supervisé et la création d'agents. J'aime le développement et l'IA, et si vous ne voyez aucun poste de développement dans mon expérience professionnelle, c'est parce que personne ne m'en a donné l'opportunité."
+           }
         };
 
         function changeLanguage(lang) {
@@ -215,6 +227,10 @@
             document.getElementById('softwareDevContent').textContent = translations[lang].softwareDevContent;
             document.getElementById('machineLearningTitle').textContent = translations[lang].machineLearning;
             document.getElementById('machineLearningContent').textContent = translations[lang].machineLearningContent;
+            document.getElementById('lenguagesTitle').textContent = translations[lang].lenguages;
+            document.getElementById('lenguagesContent').textContent = translations[lang].lenguagesContent;
+            document.getElementById('misPasionesTitle').textContent = translations[lang].misPasiones;
+            document.getElementById('misPasionesContent').textContent = translations[lang].misPasionesContent;
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -286,9 +302,9 @@
         
         <nav>
             <h1>Portfolio Leonel Hernandez Aguirre</h1>
-            <button onclick="changeLanguage('es')">Español</button>
-            <button onclick="changeLanguage('en')">English</button>
-            <button onclick="changeLanguage('fr')">Français</button>
+            <button onclick="changeLanguage('es')">Español Nativo</button>
+            <button onclick="changeLanguage('en')">English B2</button>
+            <button onclick="changeLanguage('fr')">Français B2</button>
         </nav>
     </header>
     <main>
@@ -304,8 +320,18 @@
             <h2 id="machineLearningTitle"></h2>
             <p id="machineLearningContent"></p>
         </section>
+        <section>
+            <h2 id="lenguagesTitle"></h2>
+            <p id="lenguagesContent"></p>
+        </section>
+        <section>
+            <h2 id="misPasionesTitle"></h2>
+            <p id="misPasionesContent"></p>
+        </section>
         <div class="indicator">
             <div class="indicator-dot active"></div>
+            <div class="indicator-dot"></div>
+            <div class="indicator-dot"></div>
             <div class="indicator-dot"></div>
             <div class="indicator-dot"></div>
         </div>
